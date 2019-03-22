@@ -1,0 +1,21 @@
+{
+  "name": "instagram-raffle",
+  "version": "1.0.0",
+  "description": "Simple Project to random select a winner for comments of a Instagram giveway, promotion or contest",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "instagram",
+    "winner",
+    "comment",
+    "picker"
+  ],
+  "author": "ssscassio (Cássio Santos)",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "puppeteer": "^1.13.0"
+  }
+}
