@@ -15,7 +15,7 @@ class Crawler {
   constructor(username) {
     this.username = username;
     this.baseUrl = `https://www.instagram.com/${this.username}`;
-    this.getUserPhotos = this.getUserPhotos.bind(this);
+    this.scrapUserInfo = this.scrapUserInfo.bind(this);
   }
 
   async scrapUserInfo() {
@@ -47,14 +47,6 @@ class Crawler {
       }
     };
   }
-
-  // async getUserPhotos() {
-  //   const browser = await puppeteer.launch();
-  //   const page = await browser.newPage();
-  //   await page.setViewport({ width: 1080, height: 720 });
-  //   await page.goto(this.baseUrl);
-  //   await page.screenshot({ path: "./screenshots/feed.png" });
-  // }
 }
 
 module.exports = username => {
