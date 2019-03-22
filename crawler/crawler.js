@@ -11,6 +11,7 @@ const COUNTS_SELECTOR = `${HEADER_SELECTOR} section > ul`;
 const MEDIA_COUNT_SELECTOR = `${COUNTS_SELECTOR} > li:nth-child(1) > a > span`;
 const FOLLOWED_BY_COUNT_SELECTOR = `${COUNTS_SELECTOR} > li:nth-child(2) > a > span`;
 const FOLLOWS_COUNT_SELECTOR = `${COUNTS_SELECTOR} > li:nth-child(3) > a > span`;
+
 class Crawler {
   constructor(username) {
     this.username = username;
@@ -33,7 +34,8 @@ class Crawler {
     const media = await $(MEDIA_COUNT_SELECTOR).text();
     const followed_by = await $(FOLLOWED_BY_COUNT_SELECTOR).attr("title");
     const follows = await $(FOLLOWS_COUNT_SELECTOR).text();
-
+    browser.close();
+    
     return {
       username,
       full_name,
