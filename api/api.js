@@ -2,11 +2,11 @@ var express = require("express");
 
 var app = express();
 
-var userRouter = require("./user.js");
+var userRouter = require("./users.js");
 
-app.use("/user", userRouter);
+app.use("/users", userRouter);
 
 // Server Starter
-app.listen(3000, function() {
-  console.log("App listening on port 3000");
+app.listen(process.env.PORT || 3000, function() {
+  console.log(`App listening on port ${process.env.PORT || 3000}`);
 });

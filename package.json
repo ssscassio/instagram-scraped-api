@@ -4,7 +4,8 @@
   "description": "Simple Project to random select a winner for comments of a Instagram giveway, promotion or contest",
   "main": "index.js",
   "scripts": {
-    "test": "node index.js neymarjr"
+    "test": "node index.js neymarjr",
+    "server": "node api/api.js"
   },
   "keywords": [
     "instagram",
