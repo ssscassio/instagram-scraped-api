@@ -58,6 +58,10 @@ class Crawler {
       }
     };
   }
+
+  async finish() {
+    this.browser.close();
+  }
 }
 
 module.exports = username => {
