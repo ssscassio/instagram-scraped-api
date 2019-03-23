@@ -11,19 +11,30 @@ const COUNTS_SELECTOR = `${HEADER_SELECTOR} section > ul`;
 const MEDIA_COUNT_SELECTOR = `${COUNTS_SELECTOR} > li:nth-child(1) > a > span`;
 const FOLLOWED_BY_COUNT_SELECTOR = `${COUNTS_SELECTOR} > li:nth-child(2) > a > span`;
 const FOLLOWS_COUNT_SELECTOR = `${COUNTS_SELECTOR} > li:nth-child(3) > a > span`;
+const IS_PRIVATE_SELECTOR = `#react-root > section > main > div > div.Nd_Rl._2z6nI > article > div > div > h2`;
+
 class Crawler {
   constructor(username) {
     this.username = username;
     this.baseUrl = `https://www.instagram.com/${this.username}`;
-    this.scrapUserInfo = this.scrapUserInfo.bind(this);
+  }
+
+  async initialize() {
+    if (!this.page) {
+      // Initialize Browser
+      this.browser = await puppeteer.launch();
+      // Go to user profile
+      this.page = await this.browser.newPage();
+      await this.page.setViewport({ width: 1080, height: 720 });
+      await this.page.goto(this.baseUrl, {
+        waitUntil: "networkidle0"
+      });
+    }
   }
 
   async scrapUserInfo() {
-    const browser = await puppeteer.launch();
-    const page = await browser.newPage();
-    await page.setViewport({ width: 1080, height: 720 });
-    await page.goto(this.baseUrl);
-    let bodyHTML = await page.evaluate(() => document.body.innerHTML);
+    await this.initialize();
+    let bodyHTML = await this.page.evaluate(() => document.body.innerHTML);
     const $ = await cheerio.load(bodyHTML);
     const username = await $(USERNAME_SELECTOR).text();
     const full_name = await $(FULL_NAME_SELECTOR).text();

@@ -4,7 +4,7 @@
   "description": "Simple Project to random select a winner for comments of a Instagram giveway, promotion or contest",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node index.js neymarjr"
   },
   "keywords": [
     "instagram",
@@ -17,6 +17,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "cheerio": "^1.0.0-rc.2",
+    "express": "^4.16.4",
     "puppeteer": "^1.13.0"
   }
 }
