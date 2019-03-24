@@ -1,10 +1,8 @@
 var express = require("express");
 
-var app = express();
+const app = express();
 
-var userRouter = require("./users.js");
-
-app.use("/users", userRouter);
+app.use(require("./route"));
 
 // Server Starter
 app.listen(process.env.PORT || 3000, function() {
