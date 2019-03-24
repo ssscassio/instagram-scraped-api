@@ -1,6 +1,13 @@
 const crawler = require("./crawler/crawler.js")(process.argv[2]);
 
-crawler.scrapUserInfo().then(response => {
+// // Scrap User Info Example
+// crawler.scrapUserInfo().then(response => {
+//   console.log(response);
+//   crawler.finish();
+// });
+
+// Scrap Search result
+crawler.searchUser('Teste').then(response => {
   console.log(response);
   crawler.finish();
 });
