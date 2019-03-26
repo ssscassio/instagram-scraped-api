@@ -1,7 +1,7 @@
-const crawler = require("./crawler/crawler.js")(process.argv[2]);
+const crawler = require("./crawler/crawler.js")();
 
 // // Scrap User Info Example
-// crawler.scrapUserInfo().then(response => {
+// crawler.scrapUserInfo(process.argv[2]).then(response => {
 //   console.log(response);
 //   crawler.finish();
 // });
@@ -13,7 +13,7 @@ const crawler = require("./crawler/crawler.js")(process.argv[2]);
 // });
 
 // Scrap User Media
-crawler.scrapUserFeed(process.argv[3]).then(response => {
+crawler.scrapUserFeed(process.argv[2], process.argv[3]).then(response => {
   console.log(response);
   crawler.finish();
 });

@@ -1,5 +1,4 @@
-var express = require("express"),
-  { validationResult } = require("express-validator/check");
+var { validationResult } = require("express-validator/check");
 
 const Crawler = require("../../crawler/crawler.js");
 
@@ -11,7 +10,7 @@ exports.searchUser = function(req, res, next) {
     validationResult(req).throw();
 
     const { q, count } = req.query;
-    const crawler = Crawler("search");
+    const crawler = Crawler();
     crawler.searchUser(q).then(data => {
       if (count) {
         data = data.slice(0, count);
@@ -26,9 +25,9 @@ exports.searchUser = function(req, res, next) {
 
 exports.getUserInfo = function(req, res) {
   const { username } = req.params;
-  const crawler = Crawler(username);
+  const crawler = Crawler();
 
-  crawler.scrapUserInfo().then(data => {
+  crawler.scrapUserInfo(username).then(data => {
     res.json({ data });
     crawler.finish();
   });
@@ -36,9 +35,9 @@ exports.getUserInfo = function(req, res) {
 
 exports.getRecentMedia = function(req, res) {
   const { username } = req.params;
-  const crawler = Crawler(username);
+  const crawler = Crawler();
 
-  crawler.scrapUserFeed().then(data => {
+  crawler.scrapUserFeed(username).then(data => {
     res.json({ data });
   });
 };

@@ -5,26 +5,25 @@ const search_selector = require("./selectors/search.js");
 const feed_selector = require("./selectors/feed.js");
 
 class Crawler {
-  constructor(username) {
-    this.username = username;
+  constructor() {
     this.baseUrl = `https://www.instagram.com/`;
   }
 
-  async initialize() {
+  async initialize(pathUrl) {
     if (!this.page) {
       // Initialize Browser
       this.browser = await puppeteer.launch();
       // Go to user profile
       this.page = await this.browser.newPage();
       await this.page.setViewport({ width: 1080, height: 720 });
-      await this.page.goto(`${this.baseUrl}${this.username}`, {
+      await this.page.goto(`${this.baseUrl}${pathUrl}`, {
         waitUntil: "networkidle0"
       });
     }
   }
 
-  async scrapUserInfo() {
-    await this.initialize();
+  async scrapUserInfo(usernameParam) {
+    await this.initialize(`${usernameParam}`);
     let bodyHTML = await this.page.evaluate(() => document.body.innerHTML);
     const $ = await cheerio.load(bodyHTML);
     const username = await $(users_selector.USERNAME).text();
@@ -51,7 +50,7 @@ class Crawler {
   }
 
   async searchUser(query) {
-    await this.initialize();
+    await this.initialize(`search`);
     await this.page.screenshot({ path: "./crawler/screenshots/search.png" });
     await this.page.type(search_selector.SEARCH_INPUT, query);
     await this.page.waitForNavigation({ waitUntil: "networkidle0" });
@@ -79,8 +78,8 @@ class Crawler {
       .filter(value => value.username.charAt(0) != "#");
   }
 
-  async scrapUserFeed(count = 100, scrollDelay = 1000) {
-    await this.initialize();
+  async scrapUserFeed(username, count = 100, scrollDelay = 1000) {
+    await this.initialize(`${username}`);
     await this.page.screenshot({ path: "./crawler/screenshots/feed.png" });
     const bodyHTML = await this.page.evaluate(() => document.body.innerHTML);
     const $ = await cheerio.load(bodyHTML);
@@ -107,6 +106,6 @@ class Crawler {
   }
 }
 
-module.exports = username => {
-  return new Crawler(username);
+module.exports = () => {
+  return new Crawler();
 };
