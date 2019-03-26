@@ -2,6 +2,7 @@ const puppeteer = require("puppeteer");
 const cheerio = require("cheerio");
 const users_selector = require("./selectors/users.js");
 const search_selector = require("./selectors/search.js");
+const feed_selector = require("./selectors/feed.js");
 
 class Crawler {
   constructor(username) {
@@ -76,6 +77,29 @@ class Crawler {
       }))
       .get()
       .filter(value => value.username.charAt(0) != "#");
+  }
+
+  async scrapUserFeed(count = 100, scrollDelay = 1000) {
+    await this.initialize();
+    await this.page.screenshot({ path: "./crawler/screenshots/feed.png" });
+    const bodyHTML = await this.page.evaluate(() => document.body.innerHTML);
+    const $ = await cheerio.load(bodyHTML);
+
+    return $(feed_selector.FEED_LIST)
+      .find(feed_selector.FEED_ITEM)
+      .map((index, element) => ({
+        link: `${this.baseUrl}${$(element)
+          .find(feed_selector.FEED_LINK)
+          .attr("href")
+          .slice(1)}`,
+        picture: $(element)
+          .find(feed_selector.FEED_PICTURE)
+          .attr("src"),
+        picture_alt: $(element)
+          .find(feed_selector.FEED_PICTURE)
+          .attr("alt")
+      }))
+      .get();
   }
 
   async finish() {

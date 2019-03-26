@@ -25,9 +25,9 @@ $ PORT=3000 npm run server
 
 #### Users
 
-- **/users/{user-name}** _User basic information_
+- **/users/:username** _User basic information_
 
-  - **user-name** `:string - (Required) The username of a user to get information about`
+  - **username** `:string - (Required) The username of a user to get information about`
 
   ```
   {
@@ -63,8 +63,25 @@ $ PORT=3000 npm run server
   }
   ```
 
+- **/users/:username/media/recent** _Get Recent media from a user_
+
+  - **username** `:string - (Required) The username of a user to get recent feed`
+
+  ```
+  {
+    "data": [
+      {
+        "link": "",
+        "picture": "",
+        "picture_alt": ""
+      }
+    ]
+  }
+  ```
+
 ## Articles and sites used to do this
 
 - [Instagram API Documentation by Any ⚡️ API](https://any-api.com/instagram_com/instagram_com/docs/)
 - [Best practices Express Structure](https://www.terlici.com/2014/08/25/best-practices-express-structure.html)
 - [How to make input validation simple and clean in your Express.js app](https://medium.freecodecamp.org/how-to-make-input-validation-simple-and-clean-in-your-express-js-app-ea9b5ff5a8a7)
+- [Scrape Infinite Scroll with Puppeteer](https://intoli.com/blog/scrape-infinite-scroll/)

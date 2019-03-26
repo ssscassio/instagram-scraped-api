@@ -2,7 +2,7 @@
   "name": "instagram-raffle",
   "version": "1.0.0",
   "description": "Simple Project to random select a winner for comments of a Instagram giveway, promotion or contest",
-  "main": "api/app.js",
+  "main": "index.js",
   "scripts": {
     "test": "node index.js neymarjr",
     "server": "node api/app.js"

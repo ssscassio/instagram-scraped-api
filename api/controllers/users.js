@@ -12,11 +12,11 @@ exports.searchUser = function(req, res, next) {
 
     const { q, count } = req.query;
     const crawler = Crawler("search");
-    crawler.searchUser(q).then(response => {
+    crawler.searchUser(q).then(data => {
       if (count) {
-        response = response.slice(0, count);
+        data = data.slice(0, count);
       }
-      res.json({ data: response });
+      res.json({ data });
       crawler.finish();
     });
   } catch (err) {
@@ -28,8 +28,17 @@ exports.getUserInfo = function(req, res) {
   const { username } = req.params;
   const crawler = Crawler(username);
 
-  crawler.scrapUserInfo().then(response => {
-    res.json({ data: response });
+  crawler.scrapUserInfo().then(data => {
+    res.json({ data });
     crawler.finish();
+  });
+};
+
+exports.getRecentMedia = function(req, res) {
+  const { username } = req.params;
+  const crawler = Crawler(username);
+
+  crawler.scrapUserFeed().then(data => {
+    res.json({ data });
   });
 };

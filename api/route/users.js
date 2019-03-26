@@ -8,8 +8,8 @@ var express = require("express"),
  * @apiName Search User
  * @apiGroup Users
  *
- * @apiParam  {String} [q] A query string.
- * @apiParam  {Number} [count] Number of users to return.
+ * @apiQueryParam  {String} [q] A query string.
+ * @apiQueryParam  {Integer} [count] Number of users to return.
  * @apiSuccess (200) Array{Object} List of found users.
  */
 router.get("/search", Middleware.validate("searchUser"), User.searchUser);
@@ -19,10 +19,21 @@ router.get("/search", Middleware.validate("searchUser"), User.searchUser);
  * @apiName Get a User
  * @apiGroup Users
  *
- * @apiParam  {String} [username] The username of a user to get information about
+ * @apiPathParam  {String} [username] The username of a user to get information about
  *
  * @apiSuccess (200) {Object} User profile information
  */
 router.get("/:username", User.getUserInfo);
+
+/**
+ * @api {get} /users/:username/media/recent Get 
+ * @apiName Get a User recent Feed
+ * @apiGroup Users
+ *
+ * @apiPathParam  {String} [username] The username of a user to get recent media of
+ * @apiQueryParam {Integer} [count] Count of media to return. TODO:
+ * @apiSuccess (200) {Object} User profile information
+ */
+router.get("/:username/media/recent", User.getRecentMedia);
 
 module.exports = router;
