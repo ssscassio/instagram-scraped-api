@@ -79,6 +79,60 @@ $ PORT=3000 npm run server
   }
   ```
 
+- **/media/:mediaId** _Media basic Information_
+
+  - **mediaId** `:string - (Required) The id of a media to get information about`
+
+  ```
+  {
+    "data": {
+      "caption": {
+        "from": {
+          "username: ""
+        },
+        "text": ""
+      },
+      "comments": {
+        "count": 0,
+        "data": [
+          {
+            "from": {
+              "username": ""
+            },
+            "text": ""
+          }
+        ]
+      },
+      "created_time": "",
+      "id": "",
+      "images": [
+        {
+          "url": "",
+          "height": 0,
+          "width": 0
+        }
+      ],
+      "likes": 0,
+      "link": "",
+      "location": {
+        "name": ""
+      },
+      "type": "image || video",
+      "users_in_photo": [
+        {
+          "username" : ""
+        }
+      ],
+      "videos": [
+        {
+          "src": "",
+          "thumbnail: ""
+        }
+      ]
+    },
+  }
+  ```
+
 ## Articles and sites used to do this
 
 - [Instagram API Documentation by Any ⚡️ API](https://any-api.com/instagram_com/instagram_com/docs/)
