@@ -3,4 +3,6 @@ var express = require("express"),
 
 router.use("/users", require("./users"));
 
+router.use("/media", require("./media"));
+
 module.exports = router;
