@@ -12,8 +12,14 @@ const crawler = require("./crawler/crawler.js")();
 //   crawler.finish();
 // });
 
-// Scrap User Media
-crawler.scrapUserFeed(process.argv[2], process.argv[3]).then(response => {
+// // Scrap User Media
+// crawler.scrapUserFeed(process.argv[2], process.argv[3]).then(response => {
+//   console.log(response);
+//   crawler.finish();
+// });
+
+// Scrap Specific Media
+crawler.scrapMediaInfo(process.argv[2]).then(response => {
   console.log(response);
   crawler.finish();
 });
