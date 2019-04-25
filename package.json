@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "node index.js neymarjr",
-    "server": "node api/app.js"
+    "start": "node api/app.js"
   },
   "keywords": [
     "instagram",
