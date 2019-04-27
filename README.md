@@ -8,10 +8,11 @@ Simple project to random select a winner from comments of a Instagram giveway, p
 - [Cheerio](https://github.com/cheeriojs/cheerio)
 - [ExpressJs](https://expressjs.com/)
 - [Express-Validator](https://express-validator.github.io/docs/)
-
-## Crawler
-
-### Usage
+- [Express GraphQl](https://github.com/graphql/express-graphql)
+- [GraphQl](https://www.npmjs.com/package/graphql)
+- [GraphQl Tools](https://github.com/apollographql/graphql-tools)
+- [Nodemon](https://nodemon.io/)
+- [Sucrase](https://github.com/alangpierce/sucrase)
 
 ## API
 
@@ -42,6 +43,7 @@ $ PORT=3000 npm run server
       "profile_picture": "",
       "username": "",
       "website": ""
+      "isPrivate": false
     }
   }
   ```
@@ -73,6 +75,7 @@ $ PORT=3000 npm run server
       {
         "link": "",
         "picture": "",
+        "id": "",
         "picture_alt": ""
       }
     ]

@@ -1,6 +1,6 @@
-var { validationResult } = require("express-validator/check");
+var { validationResult } = require('express-validator/check');
 
-const Crawler = require("../../crawler/crawler.js");
+const Crawler = require('../../crawler/crawler.js');
 
 exports.searchUser = function(req, res, next) {
   try {

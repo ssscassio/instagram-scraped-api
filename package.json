@@ -4,8 +4,11 @@
   "description": "Simple Project to random select a winner for comments of a Instagram giveway, promotion or contest",
   "main": "index.js",
   "scripts": {
-    "test": "node index.js neymarjr",
-    "start": "node api/app.js"
+    "clean": "rm -rf build && mkdir build",
+    "dev": "nodemon api/app.js",
+    "build-sucrase": "sucrase ./api -d ./build --transforms imports",
+    "build": "npm run clean && npm run build-sucrase",
+    "start": "npm run build && node ./build/app.js"
   },
   "keywords": [
     "instagram",
@@ -19,7 +22,14 @@
     "axios": "^0.18.0",
     "cheerio": "^1.0.0-rc.2",
     "express": "^4.16.4",
+    "express-graphql": "^0.8.0",
     "express-validator": "^5.3.1",
+    "graphql": "^14.2.1",
+    "graphql-tools": "^4.0.4",
     "puppeteer": "^1.13.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.11",
+    "sucrase": "^3.10.1"
   }
 }
