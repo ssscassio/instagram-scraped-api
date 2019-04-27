@@ -1,4 +1,4 @@
-const crawler = require("./crawler/crawler.js")();
+const crawler = require('./crawler/crawler.js')();
 
 // // Scrap User Info Example
 // crawler.scrapUserInfo(process.argv[2]).then(response => {

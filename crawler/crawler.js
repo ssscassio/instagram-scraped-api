@@ -29,9 +29,12 @@ class Crawler {
     await this.initialize(`${usernameParam}`);
     let bodyHTML = await this.page.evaluate(() => document.body.innerHTML);
     const $ = await cheerio.load(bodyHTML);
+    const isPrivate = (await $(users_selector.IS_PRIVATE).text()) != '';
     const username = await $(users_selector.USERNAME).text();
     const full_name = await $(users_selector.FULL_NAME).text();
-    const profile_picture = await $(users_selector.PROFILE_PICTURE).attr('src');
+    const profile_picture = isPrivate
+      ? await $(users_selector.PROFILE_PICTURE_PRIVATE).attr('src')
+      : await $(users_selector.PROFILE_PICTURE).attr('src');
     const bio = await $(users_selector.BIO).text();
     const website = await $(users_selector.WEBSITE).text();
     const media = await $(users_selector.MEDIA_COUNT).text();
@@ -44,6 +47,7 @@ class Crawler {
       profile_picture,
       bio,
       website,
+      isPrivate,
       counts: {
         media: parseInt(media.replace(/,/g, '')),
         follows: parseInt(follows.replace(/,/g, '')),
@@ -96,7 +100,7 @@ class Crawler {
           .slice(1);
         return {
           link: `${this.baseUrl}${media_id}`,
-          media_id,
+          id: media_id,
           picture: $(element)
             .find(feed_selector.FEED_PICTURE)
             .attr('src'),
