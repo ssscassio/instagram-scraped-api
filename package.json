@@ -26,10 +26,10 @@
     "express-validator": "^5.3.1",
     "graphql": "^14.2.1",
     "graphql-tools": "^4.0.4",
-    "puppeteer": "^1.13.0"
+    "puppeteer": "^1.13.0",
+    "sucrase": "^3.10.1"
   },
   "devDependencies": {
-    "nodemon": "^1.18.11",
-    "sucrase": "^3.10.1"
+    "nodemon": "^1.18.11"
   }
 }
