@@ -1,8 +1,12 @@
-var express = require("express");
+var express = require('express');
+const cors = require('cors');
 
 const app = express();
 
-app.use(require("./route"));
+// Enable Cross Origin Resource Sharing (CORS) for all origins
+app.use(cors());
+
+app.use(require('./route'));
 
 // Server Starter
 app.listen(process.env.PORT || 3000, function() {
